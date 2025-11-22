@@ -1,0 +1,5 @@
+Builds/
+JUCE/
+cmake-build-debug/
+build/
+*.jucer

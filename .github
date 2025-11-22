@@ -1,0 +1,36 @@
+name: Build Audio Plugin
+
+on: [push]
+
+jobs:
+  build_mac:
+    name: Build macOS
+    runs-on: macos-latest
+    
+    steps:
+    - name: Checkout Code
+      uses: actions/checkout@v3
+
+    - name: Install JUCE
+      # We download JUCE directly into the runner so we don't need to upload it
+      run: git clone https://github.com/juce-framework/JUCE.git --depth 1 --branch master
+
+    - name: Configure CMake
+      # We tell CMake where to look
+      run: cmake -B build -DJUCE_BUILD_EXTRAS=ON
+
+    - name: Build
+      # This actually compiles the code
+      run: cmake --build build --config Release
+
+    - name: Zip the VST3
+      # Zip the resulting folder so your friend can download it
+      run: |
+        cd build/HelloArchAudio_artefacts/Release/VST3
+        zip -r HelloArchAudio_Mac.zip HelloArchAudio.vst3
+
+    - name: Upload Artifact
+      uses: actions/upload-artifact@v3
+      with:
+        name: HelloArchAudio-Mac-VST3
+        path: build/HelloArchAudio_artefacts/Release/VST3/HelloArchAudio_Mac.zip
