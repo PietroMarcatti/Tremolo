@@ -32,7 +32,8 @@ target_include_directories(Tremolo PRIVATE "${CMAKE_CURRENT_BINARY_DIR}/JuceLibr
 # 5. LINK LIBRARIES
 target_compile_definitions(Tremolo PUBLIC
     JUCE_WEB_BROWSER=0
-    JUCE_USE_CURL=0)
+    JUCE_USE_CURL=0
+    JUCE_VST3_CAN_REPLACE_VST2=0)
 
 target_link_libraries(Tremolo PRIVATE
     juce::juce_audio_utils
