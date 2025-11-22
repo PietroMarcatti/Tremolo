@@ -26,6 +26,9 @@ target_sources(Tremolo PRIVATE
     Source/PluginEditor.cpp
     Source/PluginEditor.h)
 
+juce_generate_juce_header(Tremolo)
+target_include_directories(Tremolo PRIVATE "${CMAKE_CURRENT_BINARY_DIR}/JuceLibraryCode")
+
 # 5. LINK LIBRARIES
 target_compile_definitions(Tremolo PUBLIC
     JUCE_WEB_BROWSER=0
