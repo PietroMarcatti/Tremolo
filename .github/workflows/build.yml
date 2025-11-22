@@ -26,11 +26,11 @@ jobs:
     - name: Zip the VST3
       # Zip the resulting folder so your friend can download it
       run: |
-        cd build/HelloArchAudio_artefacts/Release/VST3
-        zip -r HelloArchAudio_Mac.zip HelloArchAudio.vst3
+        cd build/Tremolo_artefacts/Release/VST3
+        zip -r Tremolo_Mac.zip Tremolo.vst3
 
     - name: Upload Artifact
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       with:
-        name: HelloArchAudio-Mac-VST3
-        path: build/HelloArchAudio_artefacts/Release/VST3/HelloArchAudio_Mac.zip
+        name: Tremolo-Mac-VST3
+        path: build/Tremolo_artefacts/Release/VST3/Tremolo_Mac.zip
